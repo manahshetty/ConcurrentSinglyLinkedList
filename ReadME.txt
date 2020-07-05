@@ -58,7 +58,7 @@ INPUT-REDIRECTION :
 	
 There are three test-files provided namely t1.txt, t2.txt, t3.txt.
 In order to run the code the commands to be entered on the terminal are :
-1)gcc sll.c
+1)gcc impl.c
 2)./a.out <t1.txt
 		or
   ./a.out <t2.txt
@@ -67,7 +67,7 @@ In order to run the code the commands to be entered on the terminal are :
   
 OUTPUT-REDIRECTION :
 In order to run the code the commands to be entered on the terminal are:
-1)gcc sll.c 
+1)gcc impl.c 
 2)./a.out >outputfile.txt
 
 FUNCTION / IMPLEMENTATION :

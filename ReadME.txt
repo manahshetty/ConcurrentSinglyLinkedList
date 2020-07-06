@@ -34,6 +34,7 @@ It implements a menu based system to implement the following functions:
 
 For example :-
 To have the following linked list :- 2->3->5
+Enter:
 1
 2
 1

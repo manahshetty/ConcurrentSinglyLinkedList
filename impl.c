@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <pthread.h>
 #include <stdint.h>
-#include <inttypes.h>
 #define NUM_OF_THREADS 1000
 
 int t_count = 0;
@@ -68,48 +67,64 @@ void* insert_rear(void* data)
 
 void* display_list()
 {
-    pthread_mutex_lock(&head->lock);
-    pthread_mutex_unlock(&paracheck);                       // Unlock paracheck to allow other threads to start the exec of their functions.
-    Node *temp = head;
-    while(temp != NULL)
+    if(head)
     {
-        printf("%d ", temp->data);
-        if(temp->next)                                      // The thread traverses through the sll by locking the next node
-        {
-            pthread_mutex_lock(&temp->next->lock);
-        }
-        pthread_mutex_unlock(&temp->lock);                  // And unlocking the current node.
-        temp = temp->next;
+    	pthread_mutex_lock(&head->lock);
+    	pthread_mutex_unlock(&paracheck);                       // Unlock paracheck to allow other threads to start the exec of their functions.
+    	Node *temp = head;
+    	while(temp != NULL)
+    	{
+        	printf("%d ", temp->data);
+        	if(temp->next)                                      // The thread traverses through the sll by locking the next node
+        	{
+           	 	pthread_mutex_lock(&temp->next->lock);
+        	}
+        	pthread_mutex_unlock(&temp->lock);                  // And unlocking the current node.
+        	temp = temp->next;
+    	}
+    	printf("\n");
     }
-    printf("\n");
+    else
+    {
+	 pthread_mutex_unlock(&paracheck);                       // Unlock paracheck to allow other threads to start the exec of their functions.
+	 printf("Empty List\n");
+    }
     return NULL;
 }
 
 
 void* search(void* data)
 {
-    int key = (intptr_t)data;
-    int offset = 1;
-    Node *temp = head;
-    pthread_mutex_lock(&temp->lock);
-    pthread_mutex_unlock(&paracheck);                       // Unlock paracheck to allow other threads to start exec of their functions
-    while(temp != NULL)
+    if(head)
     {
-        if((key) == temp->data)
-        {
-            printf("%d\n", offset);
-            pthread_mutex_unlock(&temp->lock);
-            return NULL;
-        }
-        if(temp->next)                                      // The thread traverses through the sll by first locking the next node
-        {
-            pthread_mutex_lock(&temp->next->lock);
-        }
-        pthread_mutex_unlock(&temp->lock);                  // And then unlocking the current node.
-        temp = temp->next;
-        offset++;
+	int key = (intptr_t)data;
+    	int offset = 1;
+    	Node *temp = head;
+    	pthread_mutex_lock(&temp->lock);
+    	pthread_mutex_unlock(&paracheck);                       // Unlock paracheck to allow other threads to start exec of their functions
+    	while(temp != NULL)
+    	{
+        	if((key) == temp->data)
+        	{
+            		printf("%d\n", offset);
+            		pthread_mutex_unlock(&temp->lock);
+            		return NULL;
+        	}
+        	if(temp->next)                                      // The thread traverses through the sll by first locking the next node
+        	{
+            		pthread_mutex_lock(&temp->next->lock);
+        	}
+        	pthread_mutex_unlock(&temp->lock);                  // And then unlocking the current node.
+        	temp = temp->next;
+        	offset++;
+    	}
+    	printf("-1\n");
     }
-    printf("-1\n");
+    else
+    {
+	    pthread_mutex_unlock(&paracheck);                       // Unlock paracheck to allow other threads to start the exec of their functions.
+	    printf("-1\n");
+    }
     return NULL;
 }
 

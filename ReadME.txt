@@ -5,6 +5,12 @@ This code implements singly linked list operations concurrently in the C program
 HOW TO RUN THE CODE?
 
 - On a LINUX distribution :
+	$	gcc impl.c -lpthread
+	$	./a.out <t1.txt
+			OR
+	$	./a.out <t2.txt
+			OR
+	$	./a.out <t3.txt
 
 - On a Windows distribution :
 	$	gcc impl.c
@@ -15,15 +21,16 @@ HOW TO RUN THE CODE?
 	$	a <t3.txt
 
 It implements a menu based system to implement the following functions:
-
+	
+	
 	1) INSERT - Inserts an element at the end of the list.
 	2) DELETE - Deletes an item from the list if present.
 			(Returns -1 if element is not present)
 	3) SEARCH - Searches for an element and gives its offset from the head. Indexing is 1 based. (First node has position 1)
 			(Returns -1 if element is not present)
 	4) PRINT -  Prints the linked list from head to tail
+	0) EXIT  -  Exits the program.
 	
-
 
 For example :-
 To have the following linked list :- 2->3->5
@@ -58,7 +65,7 @@ INPUT-REDIRECTION :
 	
 There are three test-files provided namely t1.txt, t2.txt, t3.txt.
 In order to run the code the commands to be entered on the terminal are :
-1)gcc impl.c
+1)gcc impl.c         (include -lpthread for linux distributions)
 2)./a.out <t1.txt
 		or
   ./a.out <t2.txt
@@ -67,7 +74,7 @@ In order to run the code the commands to be entered on the terminal are :
   
 OUTPUT-REDIRECTION :
 In order to run the code the commands to be entered on the terminal are:
-1)gcc impl.c 
+1)gcc impl.c        (include -lpthread for linux distributions)
 2)./a.out >outputfile.txt
 
 FUNCTION / IMPLEMENTATION :

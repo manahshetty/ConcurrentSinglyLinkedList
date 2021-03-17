@@ -61,8 +61,6 @@ Enter:
 Output:
 2
  			   
-It is input and output redirect-able.   
-
 
 #### FUNCTION / IMPLEMENTATION :
 
@@ -81,3 +79,5 @@ Each of the functions; insert_rear, delete, search, display_list have been imple
 Finally, pthread_join(&thread_variable) is called before exit to ensure that all the pthreads finish execution before main exits.
 
 Thus, by creating a thread for every function called, the operations have all been parallelized while maintaining consistency.
+
+### Thus, a concurrent implementation of singly linked lists is realized.

@@ -24,13 +24,13 @@ This code is an implementation of Concurrent Singly Linked Lists using the pthre
 
 The project implements a menu based system to implement the following functions:
 	
-1. INSERT - Inserts an element at the end of the list.
-2. DELETE - Deletes an item from the list if present. 
+1) INSERT - Inserts an element at the end of the list.
+2) DELETE - Deletes an item from the list if present. 
 	    (Returns -1 if element is not present)
-3. SEARCH - Searches for an element and gives its offset from the head. Indexing is 1 based. (First node has position 1) 
+3) SEARCH - Searches for an element and gives its offset from the head. Indexing is 1 based. (First node has position 1) 
 	    (Returns -1 if element is not present)
-4. PRINT -  Prints the linked list from head to tail
-0. EXIT  -  Exits the program.
+4) PRINT -  Prints the linked list from head to tail
+0) EXIT  -  Exits the program.
 	
 
 For example :-
@@ -80,4 +80,4 @@ Finally, pthread_join(&thread_variable) is called before exit to ensure that all
 
 Thus, by creating a thread for every function called, the operations have all been parallelized while maintaining consistency.
 
-### Thus, a concurrent implementation of singly linked lists is realized.
+#### Thus, a concurrent implementation of singly linked lists is realized.

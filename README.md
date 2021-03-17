@@ -1,35 +1,36 @@
-README
+This code is an implementation of Concurrent Singly Linked Lists using the pthread library.
 
-This code implements singly linked list operations concurrently in the C programming language using the pthread library.
+###Execution
 
-HOW TO RUN THE CODE?
-
-- On a LINUX distribution :
-	$	gcc impl.c -lpthread
-	$	./a.out <t1.txt
-			OR
-	$	./a.out <t2.txt
-			OR
-	$	./a.out <t3.txt
-
-- On a Windows distribution :
-	$	gcc impl.c
-	$	a <t1.txt
-		    OR
-	$	a <t2.txt
-		    OR
-	$	a <t3.txt
-
-It implements a menu based system to implement the following functions:
+* LINUX distribution :
+	`$gcc impl.c -lpthread`
 	
+	`$./a.out <t1.txt`
+		OR
+	`$./a.out <t2.txt`
+		OR
+	`$./a.out <t3.txt`
+
+* Windows distribution :
+	`$gcc impl.c`
 	
-	1) INSERT - Inserts an element at the end of the list.
-	2) DELETE - Deletes an item from the list if present.
-			(Returns -1 if element is not present)
-	3) SEARCH - Searches for an element and gives its offset from the head. Indexing is 1 based. (First node has position 1)
-			(Returns -1 if element is not present)
-	4) PRINT -  Prints the linked list from head to tail
-	0) EXIT  -  Exits the program.
+	`$a <t1.txt`
+		OR
+	`$a <t2.txt`
+		OR
+	`$a <t3.txt`
+
+###Working
+
+The project implements a menu based system to implement the following functions:
+	
+1. INSERT - Inserts an element at the end of the list.
+2. DELETE - Deletes an item from the list if present. 
+	    (Returns -1 if element is not present)
+3. SEARCH - Searches for an element and gives its offset from the head. Indexing is 1 based. (First node has position 1) 
+	    (Returns -1 if element is not present)
+4. PRINT -  Prints the linked list from head to tail
+0. EXIT  -  Exits the program.
 	
 
 For example :-
@@ -62,23 +63,8 @@ Output:
  			   
 It is input and output redirect-able.   
 
-INPUT-REDIRECTION :
-	
-There are three test-files provided namely t1.txt, t2.txt, t3.txt.
-In order to run the code the commands to be entered on the terminal are :
-1)gcc impl.c         (include -lpthread for linux distributions)
-2)./a.out <t1.txt
-		or
-  ./a.out <t2.txt
-		or
-  ./a.out <t3.txt
-  
-OUTPUT-REDIRECTION :
-In order to run the code the commands to be entered on the terminal are:
-1)gcc impl.c        (include -lpthread for linux distributions)
-2)./a.out >outputfile.txt
 
-FUNCTION / IMPLEMENTATION :
+####FUNCTION / IMPLEMENTATION :
 
 A thread/process is created for every function called. This has been done using the 'pthread_create function'.
 
@@ -86,9 +72,9 @@ Mutexes have been placed on every node to ensure consistency of the data structu
 They can be locked or unlocked using the functions 'pthread_mutex_lock(&lock_variable)' and 'pthread_mutex_unlock(&lock_variable)'.
 
 Mutex variables ins_lock and paracheck are also in place for the same.
-The mutex ins_lock is used when inserting the first node/ into an empty list since there are no locks on the list at this stage, since the list does not exist.
-The mutex paracheck is locked before every function lock and unlocked on entering the function and locking the head of the list. This is done to maintain the consistency in the order in which the functions are called. If not in effect, a delete process may initiate before insert and so on.
-Finally, there are mutex locks on every node of the linked list.
+* The mutex ins_lock is used when inserting the first node/ into an empty list since there are no locks on the list at this stage, since the list does not exist.
+* The mutex paracheck is locked before every function lock and unlocked on entering the function and locking the head of the list. This is done to maintain the consistency in the order in which the functions are called. If not in effect, a delete process may initiate before insert and so on.
+* Finally, there are mutex locks on every node of the linked list.
 
 Each of the functions; insert_rear, delete, search, display_list have been implemented normally with mutex locking during traversal. Traversal follows 'hand-over' locking where the thread first locks the next node and then unlocks the current node, leaving the current node free to be accessed or modified by the other threads. This efficiently takes care of race conditions and deadlocks.
 

@@ -1,6 +1,6 @@
 This code is an implementation of Concurrent Singly Linked Lists using the pthread library.
 
-###Execution
+### Execution
 
 * LINUX distribution :
 	`$gcc impl.c -lpthread`
@@ -20,7 +20,7 @@ This code is an implementation of Concurrent Singly Linked Lists using the pthre
 		OR
 	`$a <t3.txt`
 
-###Working
+### Working
 
 The project implements a menu based system to implement the following functions:
 	
@@ -64,7 +64,7 @@ Output:
 It is input and output redirect-able.   
 
 
-####FUNCTION / IMPLEMENTATION :
+#### FUNCTION / IMPLEMENTATION :
 
 A thread/process is created for every function called. This has been done using the 'pthread_create function'.
 
